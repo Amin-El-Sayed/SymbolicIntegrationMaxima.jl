@@ -247,7 +247,7 @@ end
 
 function symbol_value(sym::Symbol, env::Dict{Symbol, Any})
     haskey(env, sym) && return env[sym]
-    sym === :pi && return π
+    sym === :pi && return Symbolics.Num(π)
     sym === :im && return im
     sym === :__maxima_e && return exp(1)
     throw(MaximaError("Maxima returned unknown symbol `$(sym)`. Pass it as a Symbolics variable."))
