@@ -24,7 +24,14 @@ Maxima must be installed and available as `maxima` on `PATH`.
 
 ## Installation
 
-Until the package is registered, develop it from a local checkout:
+Install the registered package with:
+
+```julia
+using Pkg
+Pkg.add("SymbolicIntegrationMaxima")
+```
+
+For local development, use:
 
 ```julia
 using Pkg
@@ -70,6 +77,18 @@ translate expressions in both directions. The current parser covers:
 
 Unsupported Maxima output forms intentionally throw `MaximaError` instead of
 silently returning a wrong expression.
+
+## Difficult Integral Comparison
+
+A small comparison script benchmarks `MaximaMethod()` against `RuleBasedMethod()`
+and `RischMethod()` on representative difficult integrals:
+
+```bash
+julia --project=. test/rundifficulttests.jl
+```
+
+The script prints per-integral statuses and timings, then writes a CSV file under
+`test/test_results/`. It is intended for local analysis rather than CI gating.
 
 ## Validation
 
